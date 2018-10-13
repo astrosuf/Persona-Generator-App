@@ -25,6 +25,7 @@ HomeStack.navigationOptions = {
   ),
 };
 
+//Removed from screen as just using two screens.
 const LinksStack = createStackNavigator({
   Links: LinksScreen,
 });
@@ -55,6 +56,5 @@ SettingsStack.navigationOptions = {
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
   SettingsStack,
 });
