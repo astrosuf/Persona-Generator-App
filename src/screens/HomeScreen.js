@@ -3,11 +3,11 @@ import {
   Image,
   StyleSheet,
   View,
-  Text
+  Text,
+  ActivityIndicator
 } from 'react-native';
 import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
-import axios from 'axios';
 import _ from 'lodash';
 
 class HomeScreen extends React.Component {
@@ -21,11 +21,13 @@ class HomeScreen extends React.Component {
   }
 
   render() {
+    const {isLoading} = this.props
     return (
+      isLoading ?
+      <ActivityIndicator large/>
+      :
       <View style={styles.container}>
-         <Text>
-           Adding Redux.
-         </Text>
+         {console.log(this.props.persona)}
       </View>
     );
   }
@@ -37,7 +39,16 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(null,mapDispatchToProps)(HomeScreen)
+const mapStateToProps = ({personaDetails}) => {
+  const {isLoading, persona} = personaDetails
+
+  return {
+    isLoading,
+    persona
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {

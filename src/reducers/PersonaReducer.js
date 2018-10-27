@@ -7,8 +7,6 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
-    console.log("HERE: ",action.type)
-
     switch(action.type){
         case personaTypes.PERSONA_DETAILS_REQUEST:
             return {...state, isLoading: true}

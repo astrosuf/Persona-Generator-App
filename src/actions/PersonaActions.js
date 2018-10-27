@@ -5,6 +5,8 @@
     reducer that uses them.
 */
 
+import axios from 'axios';
+
 export const personaTypes = {
     PERSONA_DETAILS_REQUEST: 'PERSONA/PERSONA_DETAILS_REQUEST',
     PERSONA_DETAILS_SUCCESS: 'PERSONA/PERSONA_DETAILS_SUCCESS',
@@ -14,5 +16,13 @@ export const personaTypes = {
 export const getPersonaDetails = () => {
     return (dispatch) => {
         dispatch({type: personaTypes.PERSONA_DETAILS_REQUEST})
+        axios.get("https://randomuser.me/api/") 
+        .then(res => {
+            var personaObject =res.data.results[0]
+            dispatch({type: personaTypes.PERSONA_DETAILS_SUCCESS, payload: personaObject })
+        })
+        .catch(error => {
+            dispatch({type: personaTypes.PERSONA_DETAILS_FAILURE})
+        })
     }
 }
