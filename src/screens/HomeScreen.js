@@ -5,15 +5,20 @@ import {
   View,
   Text
 } from 'react-native';
-
+import { connect } from "react-redux"
+import {getPersonaDetails} from "../actions/PersonaActions"
 import axios from 'axios';
 import _ from 'lodash';
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   static navigationOptions = {
     // header: null,
     title: 'Persona Generator',
   };
+
+  componentDidMount() {
+    this.props.getPersonaDetails()
+  }
 
   render() {
     return (
@@ -25,6 +30,14 @@ export default class HomeScreen extends React.Component {
     );
   }
 }
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getPersonaDetails: () => dispatch(getPersonaDetails())
+  }
+}
+
+export default connect(null,mapDispatchToProps)(HomeScreen)
 
 const styles = StyleSheet.create({
   container: {

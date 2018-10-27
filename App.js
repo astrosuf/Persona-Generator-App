@@ -7,6 +7,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from "react-redux";
 import {createLogger} from "redux-logger"
 import reducers from "./src/reducers";
+import thunk from 'redux-thunk'
 //====== Redux Imports ======= //
 
 import AppNavigator from './src/navigation/AppNavigator';
@@ -19,7 +20,7 @@ const logger = createLogger({
   diff: true
 })
 
-const createStore = createStore(reducers, applyMiddleware(logger))
+const store = createStore(reducers, applyMiddleware(logger, thunk))
 
 export default class App extends React.Component {
   state = {

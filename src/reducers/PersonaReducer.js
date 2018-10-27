@@ -1,3 +1,4 @@
+import {personaTypes} from '../actions/PersonaActions';
 
 const INITIAL_STATE = {
     persona: {},
@@ -6,13 +7,18 @@ const INITIAL_STATE = {
 }
 
 export default (state = INITIAL_STATE, action) => {
+    console.log("HERE: ",action.type)
+
     switch(action.type){
-        case PERSONA_DETAILS_REQUEST:
+        case personaTypes.PERSONA_DETAILS_REQUEST:
             return {...state, isLoading: true}
-        case PERSONA_DETAILS_SUCCESS:
+
+        case personaTypes.PERSONA_DETAILS_SUCCESS:
             return {...state, isLoading: false, persona: action.payload}
-        case PERSONA_DETAILS_FAILURE:
+
+        case personaTypes.PERSONA_DETAILS_FAILURE:
             return {...state, isLoading: false, error:"Something went wrong with the request, please try again"}
+
         default:
             return state
     }
