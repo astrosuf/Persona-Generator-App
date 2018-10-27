@@ -3,6 +3,7 @@ import {
   Image,
   StyleSheet,
   View,
+  Text
 } from 'react-native';
 
 import axios from 'axios';
@@ -19,16 +20,15 @@ export default class HomeScreen extends React.Component {
   constructor(props){
     super(props)
     this.state = {
-      personaDetails:{}
+      personaDetails:{},
     }
   }
 
   componentDidMount(){
-    console.log("========== Component Mounted ==========")
     //axios get call to randomuser API
     axios.get("https://randomuser.me/api/")
     .then((response) => {
-      this.setState({personaDetails:response.data.results[0]})
+      this.setState({personaDetails: response.data.results[0]})
     })
   }
 
@@ -36,9 +36,8 @@ export default class HomeScreen extends React.Component {
     const details = [];
     
     _.forOwn(this.state.personaDetails, (value, key) => {
-      console.log("KEY: ",key)
       if(typeof value !== 'object'){
-        details.push(<DetailField title={key} value={value} />)
+        details.push(<DetailField key={key} title={key} value={value} />)
       }
     })
 
@@ -49,6 +48,7 @@ export default class HomeScreen extends React.Component {
     return (
       <View style={styles.container}>
           <View style={styles.personaPicture}>
+             
           </View>
           <View style={styles.personaDetails}>
             {this.renderDetailField()}
