@@ -1,7 +1,25 @@
 import React from 'react';
 import { Platform, StatusBar, StyleSheet, View } from 'react-native';
 import { AppLoading, Asset, Font, Icon } from 'expo';
+
+//====== Redux Imports ======= //
+import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { Provider } from "react-redux";
+import {createLogger} from "redux-logger"
+import reducers from "./src/reducers";
+//====== Redux Imports ======= //
+
 import AppNavigator from './src/navigation/AppNavigator';
+
+
+const logger = createLogger({
+  predicate: true,
+  collapsed: true,
+  colors: true,
+  diff: true
+})
+
+const createStore = createStore(reducers, applyMiddleware(logger))
 
 export default class App extends React.Component {
   state = {
@@ -20,8 +38,9 @@ export default class App extends React.Component {
     } else {
       return (
         <View style={styles.container}>
-          {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
-          <AppNavigator />
+          <Provider store={store}>
+            <AppNavigator />
+          </Provider>
         </View>
       );
     }
