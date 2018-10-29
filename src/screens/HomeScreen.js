@@ -4,20 +4,14 @@ import {
   StyleSheet,
   View,
   Text,
-  ActivityIndicator
+  ActivityIndicator,
+  ScrollView
 } from 'react-native';
 import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
+import {MonoText} from "../components/StyledText";
+import { Divider, List } from 'react-native-paper';
 import _ from 'lodash';
-
-const IndividualAttribute = ( key, value) => {
-  console.log(`key: ${key}, value: ${value}`);
-  return (
-    <Text>
-      This Works
-    </Text>
-  )
-}
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -35,10 +29,12 @@ class HomeScreen extends React.Component {
     return Object.keys(persona).map((key)=> {
       if(typeof persona[key] !== 'object'){
         return(
-          <Text key={key}>{key} : {persona[key]}</Text>
+          <List.Item
+            key={key}
+            title={ key + " : " + persona[key]}
+          />
         )
       } else if(typeof persona[key] === 'object' && persona[key] !== null) {
-        console.log(persona[key])
         return this.renderPersonaDetails(persona[key])
       }
     })
@@ -50,9 +46,9 @@ class HomeScreen extends React.Component {
       isLoading ?
       <ActivityIndicator large/>
       :
-      <View style={styles.container}>
+      <ScrollView style={styles.container}>
          {this.renderPersonaDetails(this.props.persona)}
-      </View>
+      </ScrollView>
     );
   }
 }

@@ -11,7 +11,7 @@ import thunk from 'redux-thunk'
 //====== Redux Imports ======= //
 
 import AppNavigator from './src/navigation/AppNavigator';
-
+import { Provider as PaperProvider } from 'react-native-paper';
 
 const logger = createLogger({
   predicate: true,
@@ -40,7 +40,9 @@ export default class App extends React.Component {
       return (
         <View style={styles.container}>
           <Provider store={store}>
-            <AppNavigator />
+            <PaperProvider>
+              <AppNavigator />
+            </PaperProvider>
           </Provider>
         </View>
       );
