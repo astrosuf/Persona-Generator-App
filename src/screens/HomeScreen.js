@@ -10,6 +10,15 @@ import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
 import _ from 'lodash';
 
+const IndividualAttribute = ( key, value) => {
+  console.log(`key: ${key}, value: ${value}`);
+  return (
+    <Text>
+      This Works
+    </Text>
+  )
+}
+
 class HomeScreen extends React.Component {
   static navigationOptions = {
     // header: null,
@@ -20,14 +29,32 @@ class HomeScreen extends React.Component {
     this.props.getPersonaDetails()
   }
 
+  renderPersonaDetails(persona) {
+
+    _.mapValues(persona, (value, key) =>{
+      console.log("Key: ", key + " Value: ", value)
+    })
+
+
+    // Object.keys(persona).map((key)=>{
+    //   var value = persona[key]
+    //   console.log(typeof value)
+    //   if(typeof value !== "object"){
+    //     return (
+    //       <Text>{key} : {value}</Text>
+    //     )
+    //   }
+    // })
+  }
+
   render() {
-    const {isLoading} = this.props
+    const {isLoading, persona} = this.props
     return (
       isLoading ?
       <ActivityIndicator large/>
       :
       <View style={styles.container}>
-         {console.log(this.props.persona)}
+        {this.renderPersonaDetails(persona)}
       </View>
     );
   }
@@ -60,7 +87,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'green'
   },
   personaDetails: {
-    flex: 0.7,
-    backgroundColor: 'purple'
+    color: 'black'
   }
 });
