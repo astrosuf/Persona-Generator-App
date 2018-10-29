@@ -29,22 +29,19 @@ class HomeScreen extends React.Component {
     this.props.getPersonaDetails()
   }
 
-  renderPersonaDetails(persona) {
 
-    _.mapValues(persona, (value, key) =>{
-      console.log("Key: ", key + " Value: ", value)
+  renderPersonaDetails(persona){
+    console.log(persona)
+    return Object.keys(persona).map((key)=> {
+      if(typeof persona[key] !== 'object'){
+        return(
+          <Text key={key}>{key} : {persona[key]}</Text>
+        )
+      } else if(typeof persona[key] === 'object' && persona[key] !== null) {
+        console.log(persona[key])
+        return this.renderPersonaDetails(persona[key])
+      }
     })
-
-
-    // Object.keys(persona).map((key)=>{
-    //   var value = persona[key]
-    //   console.log(typeof value)
-    //   if(typeof value !== "object"){
-    //     return (
-    //       <Text>{key} : {value}</Text>
-    //     )
-    //   }
-    // })
   }
 
   render() {
@@ -54,7 +51,7 @@ class HomeScreen extends React.Component {
       <ActivityIndicator large/>
       :
       <View style={styles.container}>
-        {this.renderPersonaDetails(persona)}
+         {this.renderPersonaDetails(this.props.persona)}
       </View>
     );
   }
