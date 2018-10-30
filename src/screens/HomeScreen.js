@@ -48,13 +48,18 @@ class HomeScreen extends React.Component {
     {console.log(isLoading)}    
     {console.log(persona)}  
     return (
-      isLoading && Object.isEmpty(persona) ?
+      isLoading || _.isEmpty(persona) ?
       <ActivityIndicator large/>
       :
-      <ScrollView style={styles.container}>
-         <PersonaField title="First Name" content={persona.cell}/>
-         <PersonaField title="Phone Number" content={persona.cell}/>
-         <PersonaField title="Phone Number" content={persona.cell}/>
+      <ScrollView style={styles.container}>        
+        <PersonaField title="Title" content={persona.name.title}/>
+        <PersonaField title="First Name" content={persona.name.first}/>
+        <PersonaField title="Last Name" content={persona.name.last}/>
+        <PersonaField title="Gender" content={persona.gender}/>
+        <PersonaField title="Birthday" content={persona.dob.date}/>
+        <PersonaField title="Age" content={persona.dob.age}/>
+        <PersonaField title="Email" content={persona.email}/>
+        <PersonaField title="Phone Number" content={persona.cell}/>
       </ScrollView>
     );
   }
