@@ -9,8 +9,11 @@ import {
 } from 'react-native';
 import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
+//========= Might not be needed ========= 
 import {MonoText} from "../components/StyledText";
 import { Divider, List } from 'react-native-paper';
+//========= Might not be needed ========= 
+import PersonaField from "../components/PersonaField";
 import _ from 'lodash';
 
 class HomeScreen extends React.Component {
@@ -42,12 +45,16 @@ class HomeScreen extends React.Component {
 
   render() {
     const {isLoading, persona} = this.props
+    {console.log(isLoading)}    
+    {console.log(persona)}  
     return (
-      isLoading ?
+      isLoading && Object.isEmpty(persona) ?
       <ActivityIndicator large/>
       :
       <ScrollView style={styles.container}>
-         {this.renderPersonaDetails(this.props.persona)}
+         <PersonaField title="First Name" content={persona.cell}/>
+         <PersonaField title="Phone Number" content={persona.cell}/>
+         <PersonaField title="Phone Number" content={persona.cell}/>
       </ScrollView>
     );
   }
