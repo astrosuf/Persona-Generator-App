@@ -11,7 +11,7 @@ import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
 //========= Might not be needed ========= 
 import {MonoText} from "../components/StyledText";
-import { Divider, List } from 'react-native-paper';
+import { Divider, List,Card } from 'react-native-paper';
 //========= Might not be needed ========= 
 import PersonaField from "../components/PersonaField";
 import moment from "moment";
@@ -52,16 +52,25 @@ class HomeScreen extends React.Component {
       isLoading || _.isEmpty(persona) ?
       <ActivityIndicator large/>
       :
-      <ScrollView style={styles.container}>        
-        <PersonaField title="Title" content={persona.name.title}/>
-        <PersonaField title="First Name" content={persona.name.first}/>
-        <PersonaField title="Last Name" content={persona.name.last}/>
-        <PersonaField title="Gender" content={persona.gender}/>
-        <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
-        <PersonaField title="Age" content={persona.dob.age}/>
-        <PersonaField title="Email" content={persona.email}/>
-        <PersonaField title="Phone Number" content={persona.cell}/>
-      </ScrollView>
+      <View style={styles.container}>
+        <View style={{justifyContent: "center", width:null, height:null}}>
+          <Card> 
+            <Card.Cover
+              source={{uri: persona.picture.large}}
+            />
+          </Card>
+        </View>
+        <ScrollView >        
+          <PersonaField title="Title" content={persona.name.title}/>
+          <PersonaField title="First Name" content={persona.name.first}/>
+          <PersonaField title="Last Name" content={persona.name.last}/>
+          <PersonaField title="Gender" content={persona.gender}/>
+          <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
+          <PersonaField title="Age" content={persona.dob.age}/>
+          <PersonaField title="Email" content={persona.email}/>
+          <PersonaField title="Phone Number" content={persona.cell}/>
+        </ScrollView>
+      </View>
     );
   }
 }
