@@ -14,6 +14,7 @@ import {MonoText} from "../components/StyledText";
 import { Divider, List } from 'react-native-paper';
 //========= Might not be needed ========= 
 import PersonaField from "../components/PersonaField";
+import moment from "moment";
 import _ from 'lodash';
 
 class HomeScreen extends React.Component {
@@ -56,7 +57,7 @@ class HomeScreen extends React.Component {
         <PersonaField title="First Name" content={persona.name.first}/>
         <PersonaField title="Last Name" content={persona.name.last}/>
         <PersonaField title="Gender" content={persona.gender}/>
-        <PersonaField title="Birthday" content={persona.dob.date}/>
+        <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
         <PersonaField title="Age" content={persona.dob.age}/>
         <PersonaField title="Email" content={persona.email}/>
         <PersonaField title="Phone Number" content={persona.cell}/>

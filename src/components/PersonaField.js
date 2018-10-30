@@ -23,10 +23,17 @@ const styles = StyleSheet.create({
         borderWidth: 1
     },
     title:{
-        padding: 15,
-        color: "grey"
+        paddingTop: 15,
+        paddingLeft: 10,
+        color: "grey",
+        flex: 0.3
     },
     content:{
-        padding: 15,
+        paddingLeft: 10,
+        paddingTop: 15,
+        paddingBottom: 15,
+        flex: 0.7,
+        alignItems: "flex-start",
+        justifyContent:"flex-end"
     }
 })    
