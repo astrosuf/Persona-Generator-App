@@ -11,7 +11,7 @@ import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
 //========= Might not be needed ========= 
 import {MonoText} from "../components/StyledText";
-import { Divider, List,Card } from 'react-native-paper';
+import { Divider, List,Card, Button, IconButton} from 'react-native-paper';
 //========= Might not be needed ========= 
 import PersonaField from "../components/PersonaField";
 import moment from "moment";
@@ -53,13 +53,13 @@ class HomeScreen extends React.Component {
       <ActivityIndicator large/>
       :
       <View style={styles.container}>
-        <View style={{justifyContent: "center", width:null, height:null}}>
-          <Card> 
+          <Card style={{alignItems: "center", borderTopWidth: 2,borderBottomWidth: 2}}> 
             <Card.Cover
               source={{uri: persona.picture.large}}
+              style={{height: 200, width: 200}}
+              resizeMode="contain"
             />
           </Card>
-        </View>
         <ScrollView >        
           <PersonaField title="Title" content={persona.name.title}/>
           <PersonaField title="First Name" content={persona.name.first}/>
@@ -70,6 +70,9 @@ class HomeScreen extends React.Component {
           <PersonaField title="Email" content={persona.email}/>
           <PersonaField title="Phone Number" content={persona.cell}/>
         </ScrollView>
+        <Button dark mode="contained" style={styles.generateButtonStyle}>
+          Generate New Persona
+        </Button>
       </View>
     );
   }
@@ -103,5 +106,10 @@ const styles = StyleSheet.create({
   },
   personaDetails: {
     color: 'black'
+  },
+  generateButtonStyle:{
+    flex:1,
+    borderRadius: 0,
+    justifyContent:"center",
   }
 });
