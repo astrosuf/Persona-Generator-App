@@ -16,6 +16,7 @@ import { Divider, List,Card, Button, IconButton} from 'react-native-paper';
 import PersonaField from "../components/PersonaField";
 import moment from "moment";
 import _ from 'lodash';
+import CountryCodes from 'country-code-info'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
@@ -45,11 +46,13 @@ class HomeScreen extends React.Component {
 
   render() {
     const {isLoading, persona} = this.props
+    console.log(persona.nat)
+    console.log(CountryCodes.findCountry({'a2':(persona.nat)}))
     return (
       isLoading || _.isEmpty(persona) ?
       <ActivityIndicator 
         style={styles.activityIndicator}
-        color = '#bc2b78'
+        color = '#6200ee'
         size = "large"
       />
       :
@@ -70,6 +73,8 @@ class HomeScreen extends React.Component {
           <PersonaField title="Age" content={persona.dob.age}/>
           <PersonaField title="Email" content={persona.email}/>
           <PersonaField title="Phone #" content={persona.cell}/>
+          <PersonaField title="City" content={persona.location.city}/>
+          <PersonaField title="Country" content={CountryCodes.findCountry({'a2':(persona.nat)}).name}/>
         </ScrollView>
         <Button dark mode="contained" style={styles.generateButtonStyle} onPress={this.props.getPersonaDetails}>
           Generate New Persona
@@ -110,7 +115,7 @@ const styles = StyleSheet.create({
     flex:0.1,
     borderRadius: 0,
     justifyContent:"center",
-    backgroundColor:"#bc2b78"
+    backgroundColor:"#6200ee"
   },
   personaDetails:{
     flex: 0.5

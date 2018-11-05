@@ -16,7 +16,7 @@ export const personaTypes = {
 export const getPersonaDetails = () => {
     return (dispatch) => {
         dispatch({type: personaTypes.PERSONA_DETAILS_REQUEST})
-        axios.get("https://randomuser.me/api/?exc=login,registered,nat") 
+        axios.get("https://randomuser.me/api/?exc=login,registered") 
         .then(res => {
             var personaObject =res.data.results[0]
             dispatch({type: personaTypes.PERSONA_DETAILS_SUCCESS, payload: personaObject })
