@@ -20,19 +20,19 @@ export default class PersonaField extends Component {
 const styles = StyleSheet.create({
     divider:{
         borderColor: "black",
-        borderWidth: 1
+        borderWidth: 0.5
     },
     title:{
         paddingTop: 15,
         paddingLeft: 10,
         color: "grey",
-        flex: 0.3
+        flex: 0.4
     },
     content:{
         paddingLeft: 10,
         paddingTop: 15,
         paddingBottom: 15,
-        flex: 0.7,
+        flex: 0.6,
         alignItems: "flex-start",
         justifyContent:"flex-end"
     },

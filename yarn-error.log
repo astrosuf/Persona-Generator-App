@@ -1,20 +1,20 @@
 Arguments: 
-  /usr/local/bin/node /usr/local/Cellar/yarn/1.6.0/libexec/bin/yarn.js add country-codes
+  /usr/local/bin/node /usr/local/Cellar/yarn/1.9.2/libexec/bin/yarn.js
 
 PATH: 
-  /usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Applications/Wireshark.app/Contents/MacOS:/Users/sm1572/Library/Android/sdk/tools:/Users/sm1572/Library/Android/sdk/platform-tools
+  /usr/local/mysql/bin:/opt/local/bin:/opt/local/sbin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/share/dotnet:/opt/X11/bin:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/usr/local/bin
 
 Yarn version: 
-  1.6.0
+  1.9.2
 
 Node version: 
-  8.12.0
+  10.6.0
 
 Platform: 
   darwin x64
 
 Trace: 
-  Error: EACCES: permission denied, unlink '/Users/sm1572/Documents/Projects/exercises/React-Native/Persona-Generator-App/node_modules/.bin/acorn'
+  Error: EACCES: permission denied, unlink '/Users/astrosuf/Documents/reactProject/projects/PersonaGeneratorApp/node_modules/.bin/acorn'
 
 npm manifest: 
   {
@@ -34,6 +34,7 @@ npm manifest:
     "dependencies": {
       "@expo/samples": "2.1.1",
       "axios": "^0.18.0",
+      "country-code-info": "^0.1.0",
       "expo": "^30.0.1",
       "lodash": "^4.17.11",
       "moment": "^2.22.2",
@@ -1871,6 +1872,29 @@ Lockfile:
     version "1.0.2"
     resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   
+  country-code-info@^0.1.0:
+    version "0.1.0"
+    resolved "https://registry.yarnpkg.com/country-code-info/-/country-code-info-0.1.0.tgz#70f8e4e536745afc9ecb9247ae3741581d8bea65"
+  
+  country-codes@^0.0.3:
+    version "0.0.3"
+    resolved "https://registry.yarnpkg.com/country-codes/-/country-codes-0.0.3.tgz#76d3a05d39b11a0e7e6d5be404804952b9f2cab3"
+    dependencies:
+      country-data "git://github.com/getprove/country-data"
+  
+  country-data@^0.0.31:
+    version "0.0.31"
+    resolved "https://registry.yarnpkg.com/country-data/-/country-data-0.0.31.tgz#80966b8e1d147fa6d6a589d32933f8793774956d"
+    dependencies:
+      currency-symbol-map "~2"
+      underscore ">1.4.4"
+  
+  "country-data@git://github.com/getprove/country-data":
+    version "0.0.4"
+    resolved "git://github.com/getprove/country-data#d092340740faa0525bdcf672edb429ba7255f2f2"
+    dependencies:
+      underscore "~1.4.4"
+  
   create-react-class@^15.6.3:
     version "15.6.3"
     resolved "https://registry.yarnpkg.com/create-react-class/-/create-react-class-15.6.3.tgz#2d73237fb3f970ae6ebe011a9e66f46dbca80036"
@@ -1910,6 +1934,10 @@ Lockfile:
     resolved "https://registry.yarnpkg.com/cssstyle/-/cssstyle-1.1.1.tgz#18b038a9c44d65f7a8e428a653b9f6fe42faf5fb"
     dependencies:
       cssom "0.3.x"
+  
+  currency-symbol-map@~2:
+    version "2.2.0"
+    resolved "https://registry.yarnpkg.com/currency-symbol-map/-/currency-symbol-map-2.2.0.tgz#2b3c1872ff1ac2ce595d8273e58e1fff0272aea2"
   
   dashdash@^1.12.0:
     version "1.14.1"
@@ -5887,6 +5915,14 @@ Lockfile:
   ultron@~1.1.0:
     version "1.1.1"
     resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.1.1.tgz#9fe1536a10a664a65266a1e3ccf85fd36302bc9c"
+  
+  underscore@>1.4.4:
+    version "1.9.1"
+    resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.9.1.tgz#06dce34a0e68a7babc29b365b8e74b8925203961"
+  
+  underscore@~1.4.4:
+    version "1.4.4"
+    resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.4.4.tgz#61a6a32010622afa07963bf325203cf12239d604"
   
   union-value@^1.0.0:
     version "1.0.0"

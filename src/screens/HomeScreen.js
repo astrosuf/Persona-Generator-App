@@ -5,7 +5,8 @@ import {
   View,
   Text,
   ActivityIndicator,
-  ScrollView
+  ScrollView,
+  Platform
 } from 'react-native';
 import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
@@ -23,28 +24,29 @@ import CountryCodes from 'country-code-info'
 
 class HomeScreen extends React.Component {
   static navigationOptions = {
-    // header: null,
-    title: 'Persona Generator',
+    header: null,
   };
 
   componentDidMount() {
     this.props.getPersonaDetails()
   }
 
-
-  renderPersonaDetails(persona){
-    return Object.keys(persona).map((key)=> {
-      if(typeof persona[key] !== 'object'){
-        return(
-          <List.Item
-            key={key}
-            title={ key + " : " + persona[key]}
-          />
-        )
-      } else if(typeof persona[key] === 'object' && persona[key] !== null) {
-        return this.renderPersonaDetails(persona[key])
-      }
-    })
+  renderAd(){
+   return(
+    Platform.OS === 'ios' ?
+      <AdMobBanner
+        bannerSize="fullBanner"
+        adUnitID="ca-app-pub-7389832824046763/5182850868" // Test ID, Replace with your-admob-unit-id
+        testDeviceID="EMULATOR"
+        onDidFailToReceiveAdWithError={this.bannerError} 
+      />
+      :
+      <AdMobBanner
+        bannerSize="fullBanner"
+        adUnitID="ca-app-pub-7389832824046763/9908973050" // Test ID, Replace with your-admob-unit-id
+        testDeviceID="EMULATOR"
+        onDidFailToReceiveAdWithError={this.bannerError} 
+      />)
   }
 
   render() {
@@ -58,14 +60,16 @@ class HomeScreen extends React.Component {
       />
       :
       <View style={styles.container}>
+          {this.renderAd()}
+          <ScrollView style={styles.personaDetails}> 
+            
             <Card style={styles.personaPicture}> 
-              <Card.Cover
-                source={{uri: persona.picture.large}}
-                style={{flex:1, height: 150, width: 150, margin: 10}}
-                resizeMode="contain"
-              />
-            </Card>
-          <ScrollView style={styles.personaDetails}>        
+                <Card.Cover
+                  source={{uri: persona.picture.large}}
+                  style={{flex:1, height: 150, width: 150, margin: 10}}
+                  resizeMode="contain"
+                />
+            </Card>       
             <PersonaField title="Title" content={persona.name.title}/>
             <PersonaField title="First Name" content={persona.name.first}/>
             <PersonaField title="Last Name" content={persona.name.last}/>
@@ -80,11 +84,6 @@ class HomeScreen extends React.Component {
           <Button dark mode="contained" style={styles.generateButtonStyle} onPress={this.props.getPersonaDetails}>
             Generate New Persona
           </Button>
-          <AdMobBanner
-            bannerSize="fullBanner"
-            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
-            testDeviceID="EMULATOR"
-          />
       </View>
     );
   }
@@ -111,20 +110,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: 40
   },
   personaPicture: {
-    flex: 0.4,
+    height: 155,
     alignItems: "center", 
-    borderBottomWidth: 2
+    borderRadius: 2,
+    elevation: 3,
+    shadowOffset: {  width: 1,  height: 1  },
+    shadowColor: 'black',
+    shadowOpacity: 0.3,
   },
   generateButtonStyle:{
-    flex:0.1,
+    height: 40,
     borderRadius: 0,
     justifyContent:"center",
     backgroundColor:"#6200ee"
   },
   personaDetails:{
-    flex: 0.5
+    flex: 0.5,
+    paddingTop: 5
   },
   activityIndicator: {
     flex: 1,
