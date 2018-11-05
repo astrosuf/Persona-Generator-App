@@ -29,7 +29,6 @@ class HomeScreen extends React.Component {
 
 
   renderPersonaDetails(persona){
-    console.log(persona)
     return Object.keys(persona).map((key)=> {
       if(typeof persona[key] !== 'object'){
         return(
@@ -46,21 +45,23 @@ class HomeScreen extends React.Component {
 
   render() {
     const {isLoading, persona} = this.props
-    {console.log(isLoading)}    
-    {console.log(persona)}  
     return (
       isLoading || _.isEmpty(persona) ?
-      <ActivityIndicator large/>
+      <ActivityIndicator 
+        style={styles.activityIndicator}
+        color = '#bc2b78'
+        size = "large"
+      />
       :
       <View style={styles.container}>
-          <Card style={{alignItems: "center", borderTopWidth: 2,borderBottomWidth: 2}}> 
+          <Card style={styles.personaPicture}> 
             <Card.Cover
               source={{uri: persona.picture.large}}
-              style={{height: 200, width: 200}}
+              style={{flex:1, height: 200, width: 200, margin: 10}}
               resizeMode="contain"
             />
           </Card>
-        <ScrollView >        
+        <ScrollView style={styles.personaDetails}>        
           <PersonaField title="Title" content={persona.name.title}/>
           <PersonaField title="First Name" content={persona.name.first}/>
           <PersonaField title="Last Name" content={persona.name.last}/>
@@ -68,9 +69,9 @@ class HomeScreen extends React.Component {
           <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
           <PersonaField title="Age" content={persona.dob.age}/>
           <PersonaField title="Email" content={persona.email}/>
-          <PersonaField title="Phone Number" content={persona.cell}/>
+          <PersonaField title="Phone #" content={persona.cell}/>
         </ScrollView>
-        <Button dark mode="contained" style={styles.generateButtonStyle}>
+        <Button dark mode="contained" style={styles.generateButtonStyle} onPress={this.props.getPersonaDetails}>
           Generate New Persona
         </Button>
       </View>
@@ -101,15 +102,23 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   personaPicture: {
-    flex: 0.3,
-    backgroundColor: 'green'
-  },
-  personaDetails: {
-    color: 'black'
+    flex: 0.4,
+    alignItems: "center", 
+    borderBottomWidth: 2
   },
   generateButtonStyle:{
-    flex:1,
+    flex:0.1,
     borderRadius: 0,
     justifyContent:"center",
+    backgroundColor:"#bc2b78"
+  },
+  personaDetails:{
+    flex: 0.5
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80
   }
 });

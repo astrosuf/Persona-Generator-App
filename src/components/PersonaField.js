@@ -35,5 +35,7 @@ const styles = StyleSheet.create({
         flex: 0.7,
         alignItems: "flex-start",
         justifyContent:"flex-end"
-    }
+    },
+    
+    
 })    
