@@ -13,6 +13,9 @@ import {getPersonaDetails} from "../actions/PersonaActions"
 import {MonoText} from "../components/StyledText";
 import { Divider, List,Card, Button, IconButton} from 'react-native-paper';
 //========= Might not be needed ========= 
+import {
+  AdMobBanner
+} from 'expo'
 import PersonaField from "../components/PersonaField";
 import moment from "moment";
 import _ from 'lodash';
@@ -46,8 +49,6 @@ class HomeScreen extends React.Component {
 
   render() {
     const {isLoading, persona} = this.props
-    console.log(persona.nat)
-    console.log(CountryCodes.findCountry({'a2':(persona.nat)}))
     return (
       isLoading || _.isEmpty(persona) ?
       <ActivityIndicator 
@@ -57,28 +58,33 @@ class HomeScreen extends React.Component {
       />
       :
       <View style={styles.container}>
-          <Card style={styles.personaPicture}> 
-            <Card.Cover
-              source={{uri: persona.picture.large}}
-              style={{flex:1, height: 200, width: 200, margin: 10}}
-              resizeMode="contain"
-            />
-          </Card>
-        <ScrollView style={styles.personaDetails}>        
-          <PersonaField title="Title" content={persona.name.title}/>
-          <PersonaField title="First Name" content={persona.name.first}/>
-          <PersonaField title="Last Name" content={persona.name.last}/>
-          <PersonaField title="Gender" content={persona.gender}/>
-          <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
-          <PersonaField title="Age" content={persona.dob.age}/>
-          <PersonaField title="Email" content={persona.email}/>
-          <PersonaField title="Phone #" content={persona.cell}/>
-          <PersonaField title="City" content={persona.location.city}/>
-          <PersonaField title="Country" content={CountryCodes.findCountry({'a2':(persona.nat)}).name}/>
-        </ScrollView>
-        <Button dark mode="contained" style={styles.generateButtonStyle} onPress={this.props.getPersonaDetails}>
-          Generate New Persona
-        </Button>
+            <Card style={styles.personaPicture}> 
+              <Card.Cover
+                source={{uri: persona.picture.large}}
+                style={{flex:1, height: 150, width: 150, margin: 10}}
+                resizeMode="contain"
+              />
+            </Card>
+          <ScrollView style={styles.personaDetails}>        
+            <PersonaField title="Title" content={persona.name.title}/>
+            <PersonaField title="First Name" content={persona.name.first}/>
+            <PersonaField title="Last Name" content={persona.name.last}/>
+            <PersonaField title="Gender" content={persona.gender}/>
+            <PersonaField title="Birthday" content={moment(persona.dob.date).format("Do MMMM YYYY")}/>
+            <PersonaField title="Age" content={persona.dob.age}/>
+            <PersonaField title="Email" content={persona.email}/>
+            <PersonaField title="Phone #" content={persona.cell}/>
+            <PersonaField title="City" content={persona.location.city}/>
+            <PersonaField title="Country" content={CountryCodes.findCountry({'a2':(persona.nat)}).name}/>
+          </ScrollView>
+          <Button dark mode="contained" style={styles.generateButtonStyle} onPress={this.props.getPersonaDetails}>
+            Generate New Persona
+          </Button>
+          <AdMobBanner
+            bannerSize="fullBanner"
+            adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
+            testDeviceID="EMULATOR"
+          />
       </View>
     );
   }

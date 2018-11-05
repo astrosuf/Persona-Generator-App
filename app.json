@@ -1,11 +1,14 @@
 {
   "expo": {
     "name": "PersonaGeneratorApp",
-    "description": "A very interesting project.",
+    "description": "Persona generator is an application built to allow people to generator random users on the fly. This is based on designing the application to function of a pre-existing API. (for Android & iOS)",
     "slug": "PersonaGeneratorApp",
     "privacy": "public",
     "sdkVersion": "30.0.0",
-    "platforms": ["ios", "android"],
+    "platforms": [
+      "ios",
+      "android"
+    ],
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -22,6 +25,7 @@
     ],
     "ios": {
       "supportsTablet": true
-    }
+    },
+    "githubUrl": "https://github.com/astrosuf/Persona-Generator-App"
   }
 }
