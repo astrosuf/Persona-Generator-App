@@ -35,14 +35,14 @@ class HomeScreen extends React.Component {
    return(
     Platform.OS === 'ios' ?
       <AdMobBanner
-        bannerSize="fullBanner"
+        bannerSize="smartBannerPortrait"
         adUnitID="ca-app-pub-7389832824046763/5182850868" // Test ID, Replace with your-admob-unit-id
         testDeviceID="EMULATOR"
         onDidFailToReceiveAdWithError={this.bannerError} 
       />
       :
       <AdMobBanner
-        bannerSize="fullBanner"
+        bannerSize="smartBannerPortrait"
         adUnitID="ca-app-pub-7389832824046763/9908973050" // Test ID, Replace with your-admob-unit-id
         testDeviceID="EMULATOR"
         onDidFailToReceiveAdWithError={this.bannerError} 
@@ -110,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    paddingTop: 40
+
   },
   personaPicture: {
     height: 155,
