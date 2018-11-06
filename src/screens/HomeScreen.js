@@ -6,7 +6,8 @@ import {
   Text,
   ActivityIndicator,
   ScrollView,
-  Platform
+  Platform,
+  Dimensions
 } from 'react-native';
 import { connect } from "react-redux"
 import {getPersonaDetails} from "../actions/PersonaActions"
@@ -31,26 +32,33 @@ class HomeScreen extends React.Component {
     this.props.getPersonaDetails()
   }
 
+  bannerError() {
+    console.log("An error");
+    return;
+  }
+
   renderAd(){
    return(
     Platform.OS === 'ios' ?
-      <AdMobBanner
-        bannerSize="smartBannerPortrait"
-        adUnitID="ca-app-pub-7389832824046763/5182850868" // Test ID, Replace with your-admob-unit-id
-        testDeviceID="EMULATOR"
-        onDidFailToReceiveAdWithError={this.bannerError} 
-      />
+        <AdMobBanner
+          bannerSize="smartBannerPortrait"
+          adUnitID="ca-app-pub-7389832824046763/5182850868" // Test ID, Replace with your-admob-unit-id
+          testDeviceID="EMULATOR"
+          onDidFailToReceiveAdWithError={this.bannerError} 
+        />
       :
-      <AdMobBanner
-        bannerSize="smartBannerPortrait"
-        adUnitID="ca-app-pub-7389832824046763/9908973050" // Test ID, Replace with your-admob-unit-id
-        testDeviceID="EMULATOR"
-        onDidFailToReceiveAdWithError={this.bannerError} 
-      />)
+        <AdMobBanner
+          bannerSize="smartBannerPortrait"
+          adUnitID="ca-app-pub-7389832824046763/9908973050" // Test ID, Replace with your-admob-unit-id
+          testDeviceID="EMULATOR"
+          onDidFailToReceiveAdWithError={this.bannerError} 
+        />
+      )
   }
 
   render() {
     const {isLoading, persona} = this.props
+    var {height, width} = Dimensions.get('window');    
     return (
       isLoading || _.isEmpty(persona) ?
       <ActivityIndicator 
@@ -60,9 +68,10 @@ class HomeScreen extends React.Component {
       />
       :
       <View style={styles.container}>
-          {this.renderAd()}
+          <View style={{width: width, paddingTop:50, borderBottomWidth: 1,   }}>
+            {this.renderAd()}          
+          </View>
           <ScrollView style={styles.personaDetails}> 
-            
             <Card style={styles.personaPicture}> 
                 <Card.Cover
                   source={{uri: persona.picture.large}}
