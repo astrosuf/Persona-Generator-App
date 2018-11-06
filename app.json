@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.astrosuf.personagenerator"
+    },
+    "android": {
+      "package": "com.astrosuf.personagenerator"
     },
     "githubUrl": "https://github.com/astrosuf/Persona-Generator-App"
   }
